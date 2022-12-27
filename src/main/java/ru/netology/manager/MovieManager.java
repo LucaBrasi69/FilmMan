@@ -1,8 +1,6 @@
 package ru.netology.manager;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import ru.netology.domain.Movie;
 
 @Data
@@ -10,8 +8,6 @@ import ru.netology.domain.Movie;
 public class MovieManager {
     private Movie[] movies = new Movie[0];
     private int defaultMovieLength = 10;
-
-
 
 
     MovieManager() {
@@ -37,14 +33,25 @@ public class MovieManager {
 
     }
 
+//    public Movie[] getLastAdd() {
+//        int moviesLength = movies.length;
+//        if (moviesLength < defaultMovieLength) {
+//            defaultMovieLength = moviesLength;
+//        }
+//        Movie[] customFilm = new Movie[defaultMovieLength];
+//        for (int i = 0; i < customFilm.length; i++) {
+//            int result = moviesLength - i - 1;
+//            customFilm[i] = movies[result];
+//
+//        }
+//        return customFilm;
+//    }
+
     public Movie[] getLastAdd() {
-        int moviesLength = movies.length;
-        if (moviesLength < defaultMovieLength) {
-            defaultMovieLength = moviesLength;
-        }
-        Movie[] customFilm = new Movie[defaultMovieLength];
-        for (int i = 0; i < customFilm.length; i++) {
-            int result = moviesLength - i - 1;
+        int length = Math.min(defaultMovieLength, movies.length);
+        Movie[] customFilm = new Movie[length];
+        for (int i = 0; i < length; i++) {
+            int result = movies.length - 1 - i;
             customFilm[i] = movies[result];
 
         }
